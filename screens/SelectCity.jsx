@@ -17,19 +17,8 @@ const SelectCity = () => {
   const [isClicked, setIsClicked] = useState(true);
 
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        backgroundColor: useColor.white,
-        paddingHorizontal: 20,
-        paddingTop: 40,
-      }}
-    >
-      <Text
-        style={{ fontSize: 25, color: useColor.secondary, fontWeight: "bold" }}
-      >
-        SelectCity
-      </Text>
+    <SafeAreaView style={styles.selectedCity}>
+      <Text style={styles.selectedCityText}>SelectCity</Text>
 
       <View>
         <FlatList
@@ -104,4 +93,16 @@ const SelectCity = () => {
 
 export default SelectCity;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  selectedCity: {
+    flex: 1,
+    backgroundColor: useColor.white,
+    paddingHorizontal: 20,
+    paddingTop: 40,
+  },
+  selectedCityText: {
+    fontSize: 25,
+    color: useColor.secondary,
+    fontWeight: "bold",
+  },
+});

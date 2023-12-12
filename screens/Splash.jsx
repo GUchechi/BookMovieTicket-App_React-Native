@@ -13,9 +13,9 @@ const Splash = () => {
   }, []);
 
   return (
-    <View style={{ flex: 1, backgroundColor: useColor.primary }}>
+    <View style={styles.splash}>
       <Image
-        style={{ width: "100%", height: "100%", resizeMode: "contain" }}
+        style={styles.splashImage}
         source={require("../assets/movieSplash.png")}
       />
     </View>
@@ -24,4 +24,7 @@ const Splash = () => {
 
 export default Splash;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  splash: { flex: 1, backgroundColor: useColor.primary },
+  splashImage: { width: "100%", height: "100%", resizeMode: "contain" },
+});
