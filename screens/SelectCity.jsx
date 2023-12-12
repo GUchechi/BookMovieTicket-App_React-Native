@@ -42,7 +42,9 @@ const SelectCity = () => {
           renderItem={({ item, index }) => (
             <TouchableOpacity
               onPress={() => {
-                setIsSelected(index);
+                setIsSelected((prevSelected) =>
+                  prevSelected === index ? null : index
+                );
                 setIsClicked(false);
               }}
               style={{
@@ -73,10 +75,11 @@ const SelectCity = () => {
       </View>
 
       <TouchableOpacity
-        disabled={isClicked}
+        disabled={isSelected === null || isClicked}
         onPress={() => navigation.navigate("HomeScreen")}
         style={{
-          backgroundColor: isClicked === false ? useColor.primary : "#e3e3e3",
+          backgroundColor:
+            isSelected === null || isClicked ? "#e3e3e3" : useColor.primary,
           marginHorizontal: 40,
           height: 55,
           borderRadius: 20,
@@ -89,7 +92,6 @@ const SelectCity = () => {
           style={{
             fontWeight: "bold",
             color: isClicked === false ? "white" : "grey",
-            fontWeight: "bold",
             fontSize: 20,
           }}
         >
