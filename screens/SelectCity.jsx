@@ -13,7 +13,8 @@ import { useNavigation } from "@react-navigation/native";
 
 const SelectCity = () => {
   const navigation = useNavigation();
-  const [isSelected, setIsSelcected] = useState();
+  const [isSelected, setIsSelected] = useState();
+  const [isClicked, setIsClicked] = useState(true);
 
   return (
     <SafeAreaView
@@ -40,22 +41,26 @@ const SelectCity = () => {
           data={cities}
           renderItem={({ item, index }) => (
             <TouchableOpacity
-              onPress={() => setIsSelcected(index)}
+              onPress={() => {
+                setIsSelected(index);
+                setIsClicked(false);
+              }}
               style={{
-                borderWidth: 1,
+                borderWidth: isSelected === index ? 2 : 1,
                 borderColor:
-                  isSelected === index ? useColor.primary : useColor.grey,
+                  isSelected === index ? useColor.white : useColor.grey,
                 marginLeft: 10,
                 marginBottom: 30,
                 paddingHorizontal: 18,
                 paddingVertical: 9,
                 borderRadius: 20,
+                backgroundColor: isSelected === index ? "red" : "#fff",
               }}
             >
               <Text
                 style={{
                   fontWeight: "400",
-                  color: useColor.grey,
+                  color: isSelected === index ? useColor.white : useColor.grey,
                   fontSize: 25,
                 }}
               >
@@ -68,9 +73,10 @@ const SelectCity = () => {
       </View>
 
       <TouchableOpacity
+        disabled={isClicked}
         onPress={() => navigation.navigate("HomeScreen")}
         style={{
-          backgroundColor: useColor.primary,
+          backgroundColor: isClicked === false ? useColor.primary : "#e3e3e3",
           marginHorizontal: 40,
           height: 55,
           borderRadius: 20,
@@ -82,7 +88,7 @@ const SelectCity = () => {
         <Text
           style={{
             fontWeight: "bold",
-            color: "white",
+            color: isClicked === false ? "white" : "grey",
             fontWeight: "bold",
             fontSize: 20,
           }}
