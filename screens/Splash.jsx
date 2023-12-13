@@ -2,14 +2,19 @@ import React, { useEffect } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { useColor } from "../utils/Colors";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Splash = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
     setTimeout(() => {
-      navigation.replace("SelectCity");
-    });
+      AsyncStorage.getItem("login").then((value) => {
+        value !== null
+          ? navigation.replace("HomeScreen")
+          : navigation.replace("SelectCity");
+      });
+    }, 2000);
   }, []);
 
   return (

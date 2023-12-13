@@ -1,14 +1,68 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Header from "../components/Header";
+import { useColor } from "../utils/Colors";
+import NowShowing from "../components/NowShowing";
+import ComingSoon from "../components/ComingSoon";
 
 const HomeScreen = () => {
+  const [options, setOptions] = useState(0);
+
   return (
-    <View>
-      <Text>HomeScreen</Text>
-    </View>
-  )
-}
+    <SafeAreaView style={styles.container}>
+      <Header />
+      <View style={styles.containerShowing}>
+        <TouchableOpacity
+          onPress={() => {
+            setOptions(0);
+          }}
+        >
+          <Text
+            style={{
+              color: options === 0 ? useColor.primary : "grey",
+              fontSize: 20,
+              fontWeight: "bold",
+            }}
+          >
+            Now Showing
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            setOptions(1);
+          }}
+        >
+          <Text
+            style={{
+              color: options === 1 ? useColor.primary : "grey",
+              fontSize: 20,
+              fontWeight: "bold",
+            }}
+          >
+            Coming Soon
+          </Text>
+        </TouchableOpacity>
+      </View>
 
-export default HomeScreen
+      {options === 0 ? <NowShowing /> : <ComingSoon />}
+    </SafeAreaView>
+  );
+};
 
-const styles = StyleSheet.create({})
+export default HomeScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    gap: 15,
+    // justifyContent: "center",
+    // alignItems: "center",
+  },
+  containerShowing: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+  },
+});

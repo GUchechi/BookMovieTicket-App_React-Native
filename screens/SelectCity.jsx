@@ -8,8 +8,9 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useColor } from "../utils/Colors";
-import { cities } from "../utils/Date";
+import { cities } from "../utils/Data";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SelectCity = () => {
   const navigation = useNavigation();
@@ -65,7 +66,10 @@ const SelectCity = () => {
 
       <TouchableOpacity
         disabled={isSelected === null || isClicked}
-        onPress={() => navigation.navigate("HomeScreen")}
+        onPress={() => {
+          AsyncStorage.setItem("login", "On");
+          navigation.navigate("HomeScreen");
+        }}
         style={{
           backgroundColor:
             isSelected === null || isClicked ? "#e3e3e3" : useColor.primary,
