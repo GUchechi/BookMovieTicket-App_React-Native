@@ -1,14 +1,60 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from "react";
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
+import { upComing } from "../utils/Data";
 
 const ComingSoon = () => {
   return (
-    <View>
-      <Text>ComingSoon</Text>
-    </View>
-  )
-}
+    <FlatList
+      numColumns={2}
+      data={upComing}
+      renderItem={({ item, index }) => (
+        <View style={styles.upComing}>
+          <Image source={{ uri: item.img }} style={styles.upComingImage} />
+          <View style={styles.upComingDetail}>
+            <Text style={styles.upComingDetailTitle}>{item.title}</Text>
+            <View
+              style={{ flexDirection: "row", gap: 1, alignItems: "center" }}
+            >
+              {/* <MaterialIcons name="favorite" size={10} color={"red"} /> */}
+              <Text style={styles.upComingDetailTitle}>Coming Soon</Text>
+            </View>
+          </View>
+        </View>
+      )}
+    />
+  );
+};
 
-export default ComingSoon
+export default ComingSoon;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  upComing: {
+    flex: 1,
+    margin: "1%",
+    // gap: 5,
+    // borderRadius: 10,
+  },
+  upComingImage: {
+    height: 400,
+    borderRadius: 10,
+  },
+  upComingDetail: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 5,
+    marginBottom: 10,
+  },
+  upComingDetailTitle: {
+    fontSize: 15,
+    fontWeight: "bold",
+    color: "grey",
+  },
+});

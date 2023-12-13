@@ -96,7 +96,7 @@ export const upComing = [
   {
     id: 4,
     title: "Devara",
-    img: "https://upload.wikimedia.org/wikipedia/en/thumb/b/b5/This_is_a_poster_for_Devara.jpeg/220px-This_is_a_poster_for_Devara.jpeg",
+    img: "https://upload.wikimedia.org/wikipedia/en/d/d0/K.G.F_Chapter_2.jpg",
     fav: 95,
   },
   {

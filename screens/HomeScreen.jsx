@@ -28,6 +28,20 @@ const HomeScreen = () => {
           >
             Now Showing
           </Text>
+
+          {options === 0 && (
+            <View
+              style={{
+                backgroundColor: "red",
+                height: 2,
+                width: 35,
+                alignSelf: "center",
+                marginTop: 5,
+              }}
+            ></View>
+          )}
+
+
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -43,6 +57,18 @@ const HomeScreen = () => {
           >
             Coming Soon
           </Text>
+
+          {options === 1 && (
+            <View
+              style={{
+                backgroundColor: "red",
+                height: 2,
+                width: 35,
+                alignSelf: "center",
+                marginTop: 5,
+              }}
+            ></View>
+          )}
         </TouchableOpacity>
       </View>
 
