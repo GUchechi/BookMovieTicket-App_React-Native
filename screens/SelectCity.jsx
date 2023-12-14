@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   FlatList,
   SafeAreaView,
@@ -11,11 +11,14 @@ import { useColor } from "../utils/Colors";
 import { cities } from "../utils/Data";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Store } from "../Context/Wrapper";
 
 const SelectCity = () => {
   const navigation = useNavigation();
   const [isSelected, setIsSelected] = useState();
   const [isClicked, setIsClicked] = useState(true);
+  const [city, setCity] = useState();
+  const { data, setData } = useContext(Store);
 
   return (
     <SafeAreaView style={styles.selectedCity}>
@@ -35,6 +38,7 @@ const SelectCity = () => {
                 setIsSelected((prevSelected) =>
                   prevSelected === index ? null : index
                 );
+                setData(item);
                 setIsClicked(false);
               }}
               style={{

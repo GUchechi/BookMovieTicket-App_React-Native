@@ -1,15 +1,29 @@
-import { FlatList, Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { nowShowing } from "../utils/Data";
 import { MaterialIcons } from "@expo/vector-icons";
 
 const NowShowing = () => {
+  const navigation = useNavigation();
   return (
     <FlatList
       numColumns={2}
       data={nowShowing}
       renderItem={({ item, index }) => (
-        <View style={styles.nowShowing}>
+        <TouchableOpacity
+          style={styles.nowShowing}
+          onPress={() => {
+            navigation.navigate("Details");
+          }}
+        >
           <Image source={{ uri: item.img }} style={styles.nowShowingImage} />
           <View style={styles.nowShowingDetail}>
             <Text style={styles.nowShowingDetailTitle}>{item.title}</Text>
@@ -20,7 +34,7 @@ const NowShowing = () => {
               <Text style={styles.nowShowingDetailTitle}>{item.fav}%</Text>
             </View>
           </View>
-        </View>
+        </TouchableOpacity>
       )}
     />
   );

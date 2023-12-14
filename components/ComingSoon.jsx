@@ -7,16 +7,23 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { upComing } from "../utils/Data";
 
 const ComingSoon = () => {
+  const navigation = useNavigation();
   return (
     <FlatList
       numColumns={2}
       data={upComing}
       renderItem={({ item, index }) => (
-        <View style={styles.upComing}>
+        <TouchableOpacity
+          style={styles.upComing}
+          onPress={() => {
+            navigation.navigate("Details");
+          }}
+        >
           <Image source={{ uri: item.img }} style={styles.upComingImage} />
           <View style={styles.upComingDetail}>
             <Text style={styles.upComingDetailTitle}>{item.title}</Text>
@@ -27,7 +34,7 @@ const ComingSoon = () => {
               <Text style={styles.upComingDetailTitle}>Coming Soon</Text>
             </View>
           </View>
-        </View>
+        </TouchableOpacity>
       )}
     />
   );

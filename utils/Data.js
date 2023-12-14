@@ -112,3 +112,69 @@ export const upComing = [
     fav: 95,
   },
 ];
+
+export const dates = [
+  {
+    day: "Mon",
+    dat: 10,
+    mon: "Jul",
+  },
+  {
+    day: "Tue",
+    dat: 11,
+    mon: "Jul",
+  },
+  {
+    day: "Wed",
+    dat: 12,
+    mon: "Jul",
+  },
+  {
+    day: "Thu",
+    dat: 13,
+    mon: "Jul",
+  },
+  {
+    day: "Fri",
+    dat: 14,
+    mon: "Jul",
+  },
+  {
+    day: "Sat",
+    dat: 15,
+    mon: "Jul",
+  },
+];
+
+export const Theaters = [
+  {
+    id: 1,
+    name: "Trendset Mall",
+    timings: ["9:30 AM", "7:30 PM", "12:30 AM", "1:30 PM", "3:45 PM"],
+  },
+  {
+    id: 2,
+    name: "PVR Cinemas",
+    timings: ["9:30 AM", "7:30 PM", "12:30 AM", "1:30 PM", "3:45 PM"],
+  },
+  {
+    id: 3,
+    name: "PVP MALL Cinemas",
+    timings: ["9:30 AM", "7:30 PM", "12:30 AM", "1:30 PM", "3:45 PM"],
+  },
+  {
+    id: 4,
+    name: "G3 Cinemas",
+    timings: ["9:30 AM", "7:30 PM", "12:30 AM", "1:30 PM", "3:45 PM"],
+  },
+  {
+    id: 5,
+    name: "Imax Cinemas",
+    timings: ["9:30 AM", "7:30 PM", "12:30 AM", "1:30 PM", "3:45 PM"],
+  },
+  {
+    id: 6,
+    name: "Alankar Cinemas",
+    timings: ["9:30 AM", "7:30 PM", "12:30 AM", "1:30 PM", "3:45 PM"],
+  },
+];
