@@ -7,20 +7,28 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { responsiveHeight } from "react-native-responsive-dimensions";
 import { useColor } from "../utils/Colors";
-import { dates } from "../utils/Data";
+import { Theaters, dates } from "../utils/Data";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
-const Details = () => {
+const Details = ({ route }) => {
+  const navigation = useNavigation();
+  const { title } = route.params.item;
   const [isSelected, setIsSelected] = useState();
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.wrapper}>
         <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
-          <Ionicons name="chevron-back" size={28} color={useColor.primary} />
-          <Text style={styles.avatar}>Avatar</Text>
+          <Ionicons
+            name="chevron-back"
+            size={28}
+            color={useColor.primary}
+            onPress={() => navigation.goBack()}
+          />
+          <Text style={styles.avatar}>{title}</Text>
         </View>
 
         <View>
@@ -77,6 +85,59 @@ const Details = () => {
           )}
         />
       </View>
+
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ marginHorizontal: 20 }}
+        data={Theaters}
+        renderItem={({ item }) => (
+          <View
+            style={{
+              height: responsiveHeight(19),
+              borderWidth: 2,
+              marginBottom: 10,
+              borderRadius: 12,
+              borderColor: "#e3e3e3",
+              paddingHorizontal: 20,
+              paddingVertical: 10,
+              gap: 10,
+            }}
+          >
+            <View
+              style={{ flexDirection: "row", alignItems: "center", gap: 10 }}
+            >
+              <MaterialIcons name="favorite-border" size={25} color={"black"} />
+              <Text style={{ fontSize: 15, fontWeight: "500", color: "black" }}>
+                {item.name}
+              </Text>
+            </View>
+
+            <Text style={{ fontWeight: "400", fontSize: 15 }}>
+              Non-cancellable
+            </Text>
+
+            <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+              {item.timings.map((value, index) => (
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("Theaters")}
+                  key={index}
+                  style={{
+                    paddingHorizontal: 10,
+                    borderWidth: 2,
+                    borderColor: "green",
+                    marginRight: 7,
+                    borderRadius: 10,
+                    marginBottom: 7,
+                    paddingVertical: 5,
+                  }}
+                >
+                  <Text style={{ fontSize: 13, color: "green" }}>{value}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          </View>
+        )}
+      />
     </SafeAreaView>
   );
 };
