@@ -1,11 +1,18 @@
 import React from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { responsiveHeight } from "react-native-responsive-dimensions";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { useColor } from "../utils/Colors";
 import { useNavigation } from "@react-navigation/native";
 import { Seats } from "../utils/Data";
+import Availability from "../components/Availability";
 
 const Theaters = () => {
   const navigation = useNavigation();
@@ -23,7 +30,14 @@ const Theaters = () => {
         </View>
       </View>
 
-      <Text style={{ fontSize: 17, color: "grey", fontWeight: "600" }}>
+      <Text
+        style={{
+          fontSize: 17,
+          color: "grey",
+          fontWeight: "600",
+          paddingHorizontal: 20,
+        }}
+      >
         Pvp mall | 29th Date | 9:30 AM
       </Text>
 
@@ -31,9 +45,39 @@ const Theaters = () => {
         <FlatList
           numColumns={6}
           data={Seats}
-          renderItem={({ item }) => <Text>{item}</Text>}
+          renderItem={({ item, index }) => (
+            <TouchableOpacity
+              onPress={() => console.log(item)}
+              style={{
+                backgroundColor: "#e3e3e3",
+                height: 40,
+                width: 40,
+                borderTopLeftRadius: 10,
+                borderTopRightRadius: 10,
+                margin: "3%",
+              }}
+            ></TouchableOpacity>
+          )}
         />
       </View>
+
+      <View
+        style={{
+          alignItems: "center",
+          justifyContent: "space-between",
+          flexDirection: "row",
+          paddingHorizontal: 10,
+          marginTop: 20,
+        }}
+      >
+        <Availability color={"red"} name="unAvailable" />
+        <Availability color={"#E3E3E3"} name="Availble" />
+        <Availability color={"green"} name="Selected" />
+      </View>
+
+      <TouchableOpacity>
+        
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
