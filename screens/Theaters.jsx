@@ -40,7 +40,7 @@ const Theaters = ({ route }) => {
           paddingHorizontal: 20,
         }}
       >
-        {theaters} | {date}th Date | {time}AM
+        {theaters} | {date.dat}th Date | {time}
       </Text>
 
       <View style={{ alignItems: "center" }}>
@@ -95,7 +95,7 @@ const Theaters = ({ route }) => {
             Pay Now
           </Text>
           <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 16 }}>
-            $ 100
+            $ 0
           </Text>
         </TouchableOpacity>
       </View>

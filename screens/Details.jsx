@@ -17,7 +17,7 @@ const Details = ({ route }) => {
   const navigation = useNavigation();
   const { title } = route.params.item;
   const [isSelected, setIsSelected] = useState();
-  const [date, setDate] = useState();
+  const [date, setDate] = useState({});
 
   return (
     <SafeAreaView style={styles.container}>
