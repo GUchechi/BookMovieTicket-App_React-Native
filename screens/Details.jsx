@@ -17,6 +17,7 @@ const Details = ({ route }) => {
   const navigation = useNavigation();
   const { title } = route.params.item;
   const [isSelected, setIsSelected] = useState();
+  const [date, setDate] = useState();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -43,7 +44,10 @@ const Details = ({ route }) => {
           renderItem={({ item, index }) => (
             <TouchableOpacity
               activeOpacity={0.8}
-              onPress={() => setIsSelected(index)}
+              onPress={() => {
+                setIsSelected(index);
+                setDate(item);
+              }}
               style={{
                 alignItems: "center",
                 justifyContent: "space-between",
@@ -119,7 +123,15 @@ const Details = ({ route }) => {
             <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
               {item.timings.map((value, index) => (
                 <TouchableOpacity
-                  onPress={() => navigation.navigate("Theaters")}
+                  onPress={() =>
+                    navigation.navigate("Theaters", {
+                      title,
+                      theaters: item.name,
+                      date,
+                      time: value,
+                      
+                    })
+                  }
                   key={index}
                   style={{
                     paddingHorizontal: 10,

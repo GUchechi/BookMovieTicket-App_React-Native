@@ -13,7 +13,7 @@ export default function App() {
     <Wrapper>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Theaters"
+          initialRouteName="Splash"
           screenOptions={{ headerShown: false }}
         >
           <Stack.Screen name="Splash" component={Splash} />

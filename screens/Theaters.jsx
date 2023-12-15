@@ -6,16 +6,18 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import Availability from "../components/Availability";
 import { responsiveHeight } from "react-native-responsive-dimensions";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { useColor } from "../utils/Colors";
 import { useNavigation } from "@react-navigation/native";
 import { Seats } from "../utils/Data";
-import Availability from "../components/Availability";
 
-const Theaters = () => {
+const Theaters = ({ route }) => {
   const navigation = useNavigation();
+  const { title, theaters, date, time } = route.params;
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.wrapper}>
@@ -26,7 +28,7 @@ const Theaters = () => {
             color={useColor.primary}
             onPress={() => navigation.goBack()}
           />
-          <Text style={styles.avatar}>Title</Text>
+          <Text style={styles.avatar}>{title}</Text>
         </View>
       </View>
 
@@ -38,7 +40,7 @@ const Theaters = () => {
           paddingHorizontal: 20,
         }}
       >
-        Pvp mall | 29th Date | 9:30 AM
+        {theaters} | {date}th Date | {time}AM
       </Text>
 
       <View style={{ alignItems: "center" }}>
@@ -67,7 +69,7 @@ const Theaters = () => {
           justifyContent: "space-between",
           flexDirection: "row",
           paddingHorizontal: 10,
-          marginTop: 20,
+          //   marginTop: 10,
         }}
       >
         <Availability color={"red"} name="unAvailable" />
@@ -75,9 +77,28 @@ const Theaters = () => {
         <Availability color={"green"} name="Selected" />
       </View>
 
-      <TouchableOpacity>
-        
-      </TouchableOpacity>
+      <View style={{ marginTop: 125 }}>
+        <TouchableOpacity
+          style={{
+            height: 50,
+            backgroundColor: useColor.primary,
+            justifyContent: "space-between",
+            alignSelf: "center",
+            alignItems: "center",
+            borderRadius: 10,
+            flexDirection: "row",
+            paddingHorizontal: 25,
+            width: "95%",
+          }}
+        >
+          <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 16 }}>
+            Pay Now
+          </Text>
+          <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 16 }}>
+            $ 100
+          </Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };
