@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Alert,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
@@ -123,15 +124,16 @@ const Details = ({ route }) => {
             <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
               {item.timings.map((value, index) => (
                 <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate("Theaters", {
-                      title,
-                      theaters: item.name,
-                      date,
-                      time: value,
-                      
-                    })
-                  }
+                  onPress={() => {
+                    Object.keys(date).length !== 0
+                      ? navigation.navigate("Theaters", {
+                          title,
+                          theaters: item.name,
+                          date,
+                          time: value,
+                        })
+                      : Alert.alert("Please select a date");
+                  }}
                   key={index}
                   style={{
                     paddingHorizontal: 10,

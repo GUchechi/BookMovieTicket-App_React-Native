@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
+  Alert,
   FlatList,
   StyleSheet,
   Text,
@@ -13,10 +14,20 @@ import { Ionicons } from "@expo/vector-icons";
 import { useColor } from "../utils/Colors";
 import { useNavigation } from "@react-navigation/native";
 import { Seats } from "../utils/Data";
+import { TheaterSeats } from "../Context/Wrapper";
 
 const Theaters = ({ route }) => {
   const navigation = useNavigation();
   const { title, theaters, date, time } = route.params;
+
+  const { seatsArray, setSeatsArray } = useContext(TheaterSeats);
+
+  // Seat Calculation
+  let amount = 0;
+
+  if (seatsArray.length > 0) {
+    amount = 100 * seatsArray.length;
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -47,19 +58,37 @@ const Theaters = ({ route }) => {
         <FlatList
           numColumns={6}
           data={Seats}
-          renderItem={({ item, index }) => (
-            <TouchableOpacity
-              onPress={() => console.log(item)}
-              style={{
-                backgroundColor: "#e3e3e3",
-                height: 40,
-                width: 40,
-                borderTopLeftRadius: 10,
-                borderTopRightRadius: 10,
-                margin: "3%",
-              }}
-            ></TouchableOpacity>
-          )}
+          renderItem={({ item, index }) =>
+            seatsArray.includes(item) ? (
+              <TouchableOpacity
+                onPress={() => {
+                  setSeatsArray(seatsArray.filter((remove) => remove !== item));
+                }}
+                style={{
+                  backgroundColor: "green",
+                  height: 40,
+                  width: 40,
+                  borderTopLeftRadius: 10,
+                  borderTopRightRadius: 10,
+                  margin: "3%",
+                }}
+              ></TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                onPress={() => {
+                  setSeatsArray([...seatsArray, item]);
+                }}
+                style={{
+                  backgroundColor: "#e3e3e3",
+                  height: 40,
+                  width: 40,
+                  borderTopLeftRadius: 10,
+                  borderTopRightRadius: 10,
+                  margin: "3%",
+                }}
+              ></TouchableOpacity>
+            )
+          }
         />
       </View>
 
@@ -77,8 +106,13 @@ const Theaters = ({ route }) => {
         <Availability color={"green"} name="Selected" />
       </View>
 
-      <View style={{ marginTop: 125 }}>
+      <View style={{ marginTop: 100 }}>
         <TouchableOpacity
+          onPress={() => {
+            amount === 0
+              ? Alert.alert("Please select a seat")
+              : navigation.navigate("MyTicket");
+          }}
           style={{
             height: 50,
             backgroundColor: useColor.primary,
@@ -95,7 +129,7 @@ const Theaters = ({ route }) => {
             Pay Now
           </Text>
           <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 16 }}>
-            $ 0
+            ${amount}
           </Text>
         </TouchableOpacity>
       </View>
