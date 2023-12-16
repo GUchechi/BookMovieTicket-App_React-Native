@@ -16,7 +16,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 
 const Details = ({ route }) => {
   const navigation = useNavigation();
-  const { title } = route.params.item;
+  const { title, img } = route.params.item;
   const [isSelected, setIsSelected] = useState();
   const [date, setDate] = useState({});
 
@@ -131,6 +131,7 @@ const Details = ({ route }) => {
                           theaters: item.name,
                           date,
                           time: value,
+                          img,
                         })
                       : Alert.alert("Please select a date");
                   }}

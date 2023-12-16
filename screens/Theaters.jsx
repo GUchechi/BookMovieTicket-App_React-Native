@@ -18,7 +18,9 @@ import { TheaterSeats } from "../Context/Wrapper";
 
 const Theaters = ({ route }) => {
   const navigation = useNavigation();
-  const { title, theaters, date, time } = route.params;
+  const { title, theaters, date, time, img } = route.params;
+
+  console.log(img);
 
   const { seatsArray, setSeatsArray } = useContext(TheaterSeats);
 
@@ -111,7 +113,13 @@ const Theaters = ({ route }) => {
           onPress={() => {
             amount === 0
               ? Alert.alert("Please select a seat")
-              : navigation.navigate("MyTicket");
+              : navigation.navigate("MyTicket", {
+                  title,
+                  img,
+                  theaters,
+                  time,
+                  date: date.dat,
+                });
           }}
           style={{
             height: 50,
