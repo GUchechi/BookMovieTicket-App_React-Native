@@ -49,11 +49,9 @@ const MyTicket = ({ route }) => {
             borderRadius: 10,
             resizeMode: "contain",
           }}
-          source={
-            {
-              // uri: img,
-            }
-          }
+          source={{
+            uri: img,
+          }}
         />
         <View style={{ gap: 5 }}>
           <Text style={{ fontWeight: "600", color: "black", fontSize: 15 }}>
@@ -66,13 +64,13 @@ const MyTicket = ({ route }) => {
             {date} Date, {time}
           </Text>
           <Text style={{ fontWeight: "600", color: "black", fontSize: 15 }}>
-           {seatsArray }
+            {seatsArray.join(" , ")}
           </Text>
 
           <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
             <AntDesign name="barcode" size={30} color={"black"} />
             <Text style={{ fontWeight: "600", color: "black", fontSize: 15 }}>
-              A1A2A3AYAN
+              {seatsArray}AYAN
             </Text>
           </View>
         </View>
@@ -82,6 +80,7 @@ const MyTicket = ({ route }) => {
         <TouchableOpacity
           onPress={() => {
             navigation.navigate("HomeScreen");
+            setSeatsArray([]);
           }}
           style={{
             height: 50,
