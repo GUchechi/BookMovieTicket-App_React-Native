@@ -7,11 +7,17 @@ import { Wrapper } from "./Context/Wrapper";
 import Details from "./screens/Details";
 import Theaters from "./screens/Theaters";
 import MyTicket from "./screens/MyTicket";
+import { StatusBar } from "react-native";
 
 const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <Wrapper>
+      <StatusBar
+        barStyle="light-content" // or "light-content"
+        backgroundColor="#000" // set the background color
+        translucent={false}
+      />
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName="Splash"
