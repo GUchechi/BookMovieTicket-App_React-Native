@@ -21,14 +21,14 @@ export default function App() {
       />
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="HomeScreen"
+          initialRouteName="Splash"
           screenOptions={{ headerShown: false }}
         >
           <Stack.Screen name="Splash" component={Splash} />
           <Stack.Screen name="SelectCity" component={SelectCity} />
           <Stack.Screen name="HomeScreen" component={HomeScreen} />
-          <Stack.Screen name="Details" component={Details} />
           <Stack.Screen name="MovieDetails" component={MovieDetails} />
+          <Stack.Screen name="Details" component={Details} />
           <Stack.Screen name="Theaters" component={Theaters} />
           <Stack.Screen name="MyTicket" component={MyTicket} />
         </Stack.Navigator>

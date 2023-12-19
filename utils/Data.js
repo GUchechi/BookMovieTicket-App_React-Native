@@ -1,22 +1,18 @@
 export const cities = [
-  "Toronto",
   "Abuja",
   "Lagos",
   "Uyo",
-  "New York",
   "Paris",
-  "Las Vagas",
   "London",
   "Delhi",
   "Ottawa",
+  "Rome",
   "Texas",
   "Ohio",
-  "Calabar",
   "Brussel",
   "Vienna",
-  "Rome",
   "Asaba",
-  "Hong Kong",
+  "Calabar",
 ];
 
 export const nowShowing = [

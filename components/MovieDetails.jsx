@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Ionicons,
   FontAwesome,
@@ -10,13 +10,47 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRoute } from "@react-navigation/native";
 import { useColor } from "../utils/Colors";
+import { Share } from "react-native";
+
 
 const MovieDetails = ({ navigation }) => {
   const route = useRoute();
   const { item } = route.params;
   const { title, description, img, fav } = item;
+  const [isLiked, setIsLiked] = useState(false);
 
-  console.log(item);
+  const handleLike = () => {
+    // Toggle the like state
+
+    setIsLiked(!isLiked);
+  };
+
+  // Share
+  const handleShare = async () => {
+    try {
+      const result = await Share.share({
+        message: `Check out this movie: ${title}`,
+        url: img,
+        title: title,
+      });
+
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // Shared with activity type of result.activityType
+          console.log(`Shared with ${result.activityType}`);
+        } else {
+          // Shared
+          console.log("Shared");
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // Dismissed
+        console.log("Share dismissed");
+      }
+    } catch (error) {
+      console.error("Error sharing:", error.message);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.wrapper}>
@@ -93,10 +127,11 @@ const MovieDetails = ({ navigation }) => {
         }}
       >
         <TouchableOpacity
+          onPress={handleLike}
           style={{
             flexDirection: "row",
             gap: 5,
-            backgroundColor: "grey",
+            backgroundColor: isLiked ? "red" : "grey",
             padding: 10,
             borderRadius: 10,
             paddingHorizontal: 15,
@@ -106,6 +141,9 @@ const MovieDetails = ({ navigation }) => {
         </TouchableOpacity>
 
         <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Details", { item });
+          }}
           style={{
             flexDirection: "row",
             gap: 5,
@@ -130,6 +168,7 @@ const MovieDetails = ({ navigation }) => {
         </TouchableOpacity>
 
         <TouchableOpacity
+          onPress={handleShare}
           style={{
             flexDirection: "row",
             gap: 5,

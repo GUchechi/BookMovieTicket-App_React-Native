@@ -9,11 +9,12 @@ const Splash = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      AsyncStorage.getItem("login").then((value) => {
-        value !== null
-          ? navigation.replace("HomeScreen")
-          : navigation.replace("SelectCity");
-      });
+      navigation.replace("SelectCity");
+      // AsyncStorage.getItem("login").then((value) => {
+      //   value !== null
+      //     ? navigation.replace("HomeScreen")
+      //     : navigation.replace("SelectCity");
+      // });
     }, 2000);
   }, []);
 

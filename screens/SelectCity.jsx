@@ -47,7 +47,7 @@ const SelectCity = () => {
                   isSelected === index ? useColor.white : useColor.grey,
                 marginLeft: 10,
                 marginBottom: 30,
-                paddingHorizontal: 18,
+                paddingHorizontal: 10,
                 paddingVertical: 9,
                 borderRadius: 20,
                 backgroundColor: isSelected === index ? "red" : "#fff",
@@ -71,7 +71,7 @@ const SelectCity = () => {
       <TouchableOpacity
         disabled={isSelected === null || isClicked}
         onPress={() => {
-          AsyncStorage.setItem("login", "On");
+          // AsyncStorage.setItem("login", "On");
           navigation.navigate("HomeScreen");
         }}
         style={{
@@ -112,5 +112,6 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: useColor.secondary,
     fontWeight: "bold",
+    textAlign: "center",
   },
 });
