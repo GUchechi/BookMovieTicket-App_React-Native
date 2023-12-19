@@ -8,6 +8,7 @@ import Details from "./screens/Details";
 import Theaters from "./screens/Theaters";
 import MyTicket from "./screens/MyTicket";
 import { StatusBar } from "react-native";
+import MovieDetails from "./components/MovieDetails";
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -20,13 +21,14 @@ export default function App() {
       />
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Splash"
+          initialRouteName="HomeScreen"
           screenOptions={{ headerShown: false }}
         >
           <Stack.Screen name="Splash" component={Splash} />
           <Stack.Screen name="SelectCity" component={SelectCity} />
           <Stack.Screen name="HomeScreen" component={HomeScreen} />
           <Stack.Screen name="Details" component={Details} />
+          <Stack.Screen name="MovieDetails" component={MovieDetails} />
           <Stack.Screen name="Theaters" component={Theaters} />
           <Stack.Screen name="MyTicket" component={MyTicket} />
         </Stack.Navigator>

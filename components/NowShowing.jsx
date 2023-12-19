@@ -21,7 +21,7 @@ const NowShowing = () => {
         <TouchableOpacity
           style={styles.nowShowing}
           onPress={() => {
-            navigation.navigate("Details", { item });
+            navigation.navigate("MovieDetails", { item });
           }}
         >
           <Image source={{ uri: item.img }} style={styles.nowShowingImage} />

@@ -21,7 +21,7 @@ const ComingSoon = () => {
         <TouchableOpacity
           style={styles.upComing}
           onPress={() => {
-            navigation.navigate("Details", { item });
+            navigation.navigate("MovieDetails", { item });
           }}
         >
           <Image source={{ uri: item.img }} style={styles.upComingImage} />
