@@ -12,11 +12,10 @@ import { useRoute } from "@react-navigation/native";
 import { useColor } from "../utils/Colors";
 import { Share } from "react-native";
 
-
 const MovieDetails = ({ navigation }) => {
   const route = useRoute();
   const { item } = route.params;
-  const { title, description, img, fav } = item;
+  const { title, description, img } = item;
   const [isLiked, setIsLiked] = useState(false);
 
   const handleLike = () => {
@@ -82,18 +81,6 @@ const MovieDetails = ({ navigation }) => {
           blurRadius={0.7}
         />
       </View>
-
-      <Text
-        style={{
-          fontSize: 20,
-          color: "red",
-          fontWeight: "bold",
-          paddingHorizontal: 10,
-          marginTop: 10,
-        }}
-      >
-        Aired: Theaters | 12th Date | 7:30PM
-      </Text>
 
       <Text
         style={{
